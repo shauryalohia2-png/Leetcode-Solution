@@ -15,19 +15,18 @@ public:
 
         ListNode* head2 = head->next;
         ListNode* head1 = head;
-        ListNode* odd = head2;
-        ListNode* even = head1;
-        head2->next = odd->next;
-        head1->next = odd;
+        ListNode* even = head2;
+        ListNode* odd = head1;
+        
         while(odd != nullptr && odd->next != nullptr && even != nullptr && even->next != nullptr)
         {
-            even->next = odd->next;
-            if(even->next != nullptr) even = even->next;
             odd->next = even->next;
             if(odd->next != nullptr) odd = odd->next;
             
+            even->next = odd->next;
+            if(even->next != nullptr) even = even->next;
         }
-        even->next = head2;
+        odd->next = head2;
         return head1;
     }
 };
